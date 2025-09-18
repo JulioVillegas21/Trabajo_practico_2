@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "clear": "^0.1.0",
+    "prompt-sync": "^4.2.0"
+  },
+  "name": "repositorio-tp-2-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "module": "module",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

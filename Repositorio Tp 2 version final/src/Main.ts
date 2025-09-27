@@ -10,11 +10,6 @@ import { crearTarea } from "./CrearTarea";
 
 
 
-
-
-
-
-
 function main (): void {
 
     let opcion : number = 0;

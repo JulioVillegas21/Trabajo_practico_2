@@ -14,7 +14,7 @@ export function Confirmacion(mensaje : string ) : string {
             console.log("Opcion invalida, ingrese una opcion valida.\n[y]-Si [N]-No.");
             input = prompt("Ingrese su opcion: ")?.trim() || "";
         }   
-    return input;
+    return input.toLowerCase();
 }
 
 export function pedirNumero(mensaje: string, min: number, max: number , activadorVacio : boolean): number {

@@ -8,9 +8,6 @@ import {estado, dificultad} from "./Tarea"
 import { Confirmacion, pedirNumero } from "./Controles";
 
 
-
-
-
 export function crearTarea(tareas:Tareas[]): Tareas {
 
 
@@ -38,7 +35,9 @@ export function crearTarea(tareas:Tareas[]): Tareas {
     //Variable la cual utilizo para guardar los datos de entrada 
 
     let input:string = "";
+
     // Validacion titulo de la tarea (100 caracteres maximo)
+
    do{
     validacion = false;
     input = prompt("Ingrese el título de la tarea (max 100 caracteres): ")?.trim()||""; // trim sirve para eliminar espacios blancos al pricipio y al final
@@ -112,9 +111,13 @@ export function crearTarea(tareas:Tareas[]): Tareas {
         console.log(`[${i+1}] ${estado[i]}`);
     }
 
-    //Funcion que verifica que todo este en un rango de valores, paso como parametro 1 y estado.legth-1 ya que el array tiene 4 elementos pero el 0 es el "" y tambien porque la cuenta empieza del 0 no del 1
-    //El true es para permitir espacios vacios, es este caso el enter 
-    //el retorno es un numero,si pone enter de como retorno 1 - 1 (termina sindo pendiente), si es 1 entonces hace 1-1 = pendiente , si es 2 entonces hace 2-1 = en curso , si hace .....
+    /* la funcion de "pedir numero" sirve para pedir un numero del rango que tengo en el arreglo 
+    los parametros esta automatizados para poder agregar estados sin necesidad de cambiar todo el codigo
+    el primer parametro es un mensaje, segundo es el valor minimo que puede agarrar el usuario, tercero es la longitud del arreglo
+    y el cuarto es el parametro que permite dejar valores pode default (Siempre sera el primer valor del arreglo*/
+
+    /*pedir numero se llama asi porque originalmente nacio para la fecha pero muto para otras cosas mas jajajaj
+    Gracias a eso podemos utilizarla en mas lugares del codigo*/
 
     nuevaTarea.estado = estado [pedirNumero( "Porfavor ingrese una de las opcines, Precionar ENTER dejara la tarea con el estado en default (Pendiente)", 1 , estado.length, true )-1]; 
     console.clear();
@@ -129,12 +132,18 @@ export function crearTarea(tareas:Tareas[]): Tareas {
     nuevaTarea.dificultad = dificultad[pedirNumero( "Porfavor ingrese una de las opcines, Precionar ENTER dejara la tarea con la dificultad en default (facil)", 1 , dificultad.length, true )-1]
     console.clear();
 
-    //Fecha de vencimiento 
-    //Al poner false como parametro desactivo el poder apretar espacio para dejar vacio 
-    console.log("ingrese la fecha de vencimiento");
-    let dia : number = pedirNumero("Porfavor ingrese el \" Dia \" de vencimiento ", 1 , 31, false);
-    let mes : number = pedirNumero("Porfavor ingrese el \" MES \" de vencimiento ", 1 , 21,false);
-    let anio : number= pedirNumero("Porfavor ingrese el \" AÑO \" de vencimiento ", 1900 ,2100 ,false);
-    nuevaTarea.fechavencimiento= new Date(anio, mes , dia , );
+
+
+
+
+    if(Confirmacion("Desea agregar fecha de vencimiento ?")=== "y"){
+        console.log("ingrese la fecha de vencimiento");
+        let dia : number = pedirNumero("Porfavor ingrese el \" DIA \" de vencimiento ", 1 , 31, false);
+        let mes : number = pedirNumero("Porfavor ingrese el \" MES \" de vencimiento ", 1 , 12,false);
+        let año : number= pedirNumero("Porfavor ingrese el \" AÑO \" de vencimiento ", 1900 ,2100 ,false);
+        nuevaTarea.fechavencimiento= new Date(año, mes , dia);
+    }else {
+     console.log("Podra agregar un vencimiento en editar tarea si es que lo desea.")
+    }
     return nuevaTarea;
 }

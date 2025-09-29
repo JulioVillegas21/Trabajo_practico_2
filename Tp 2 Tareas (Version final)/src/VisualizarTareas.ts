@@ -8,18 +8,31 @@ import { Confirmacion, pedirNumero } from "./Controles";
 
 
 function Seleccion(tareas:Tareas[], indice:number, formaOrdenada:string): Tareas {
-    console.clear();
+    
+    let indices : number[]=[] ;
+    let contador : number=0;
 
+    console.clear();
     console.log(`  --------  Tareas Ordenadas de forma ${formaOrdenada}  --------  `)
     console.log(`Estado: ${estado[indice]}`);
     console.log("");
 
+    
+
+    
     for(let i : number = 0 ; i <tareas.length; i++){
-        console.log(`[${i+1}]. ${tareas[i].titulo}`);
+
+        if (tareas[i].estado=== estado[indice]){
+        contador++;
+        
+        indices.push(i);
+        console.log(`[${contador}]. ${tareas[i].titulo}`);
+        }
+
     }
     console.log("");
 
-    return tareas[pedirNumero("Porfavor seleccione una tarea para visualizar: ", 1 , tareas.length, false)-1];
+    return tareas[indices[pedirNumero("Porfavor seleccione una tarea para visualizar: ", 1 , indices.length , false)-1]];
 
 }
 
